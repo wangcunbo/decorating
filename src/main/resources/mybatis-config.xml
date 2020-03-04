@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis的主配置文件-->
+<configuration>
+    <!--配置常量文件-->
+    <properties resource="application.properties"></properties>
+    <!--配置环境-->
+    <environments default="development">
+        <!--配置mysql的环境-->
+        <environment id="development">
+            <!--配置事务的类型-->
+            <transactionManager type="JDBC"/>
+            <!--配置数据源-->
+            <!--dataSource存在三个, 其中的POOLED池化的连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--指定映射配置文件的位置,也就是针对每个Dao的配置文件的位置-->
+    <!--下面指定的xml配置文件的路径,需要和src下UserDao接口的目录保持一致-->
+    <mappers>
+        <!--注解方式-->
+        <mapper class="com.barbell.decorating.dao.UserMapper"/>
+        <!--配置文件配置方式-->
+        <!--<mapper resource="com/barbell/dao/UserDao.xml"/>-->
+    </mappers>
+</configuration>
